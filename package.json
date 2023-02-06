@@ -1,5 +1,5 @@
 {
-  "name": "@fullstory/babel-plugin-annotate-react",
+  "name": "@granpc2/babel-plugin-annotate-react",
   "version": "2.2.1",
   "description": "A Babel plugin that annotates React components, making them easier to target with FullStory search",
   "main": "index.js",

@@ -123,15 +123,23 @@ function fullSourceFileNameFromState(state) {
 }
 
 function sourceFileNameFromState(state) {
-  const name = fullSourceFileNameFromState(state)
+  let name = fullSourceFileNameFromState(state)
   if (name === undefined) {
     return undefined
   }
 
+  name = name.replace(/\.[^/.]+$/, '').replace(/\\/g, '/')
+  const interestingDirs = ['src/', 'node_modules/', 'lib/']
+  for (let i = 0; i < interestingDirs.length; i += 1) {
+    const dir = interestingDirs[i]
+    const index = name.lastIndexOf(dir)
+    if (index !== -1) {
+      return name.substr(index + dir.length)
+    }
+  }
+
   if (name.indexOf('/') !== -1) {
     return name.split('/').pop()
-  } else if (name.indexOf('\\') !== -1) {
-    return name.split('\\').pop()
   } else {
     return name
   }
