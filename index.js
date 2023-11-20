@@ -201,7 +201,7 @@ function applyAttributes(t, openingElement, componentName, sourceFileName, attri
   }
   if (!openingElement.node.attributes) openingElement.node.attributes = {}
 
-  const elementName = openingElement.node.name.name || 'unknown'
+  const elementName = openingElement.node.name.name || openingElement.node.name.property.name || "unknown"
 
   const ignoredComponentFromOptions = ignoreComponentsFromOption && !!ignoreComponentsFromOption.find(component =>
     matchesIgnoreRule(component[0], sourceFileName) &&
